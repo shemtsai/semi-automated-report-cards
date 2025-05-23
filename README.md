@@ -30,7 +30,7 @@ The R code processes antibiotic administration data from an xlsx file, transform
    Use the provided "Data Structure Example.xlsx" as a guide for formatting your input Excel file with antibiotic administration data.
 
 2. **Modify the Script**  
-    Adjust the script as needed for the OrderingPhysicianNames and Routes to match your institution-specific data. Further sections that may be beneficial to modify are listed with a #NOTE in the code but any part of the code can be customized including metrics of interest. 
+    Adjust the script as needed for the OrderingPhysicianNames and Routes to match your institution-specific data. If you do not have Case Mix Index (CMI), please change all the values to 0 - note that this will output a grayscale graph. Further sections that may be beneficial to modify are listed with a #NOTE in the code but any part of the code can be customized including metrics of interest. 
 
 3. **Run the Script**  
    Open the script file in R and execute it. The script will prompt you to:
