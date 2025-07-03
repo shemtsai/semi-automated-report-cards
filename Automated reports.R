@@ -124,7 +124,7 @@ load_and_transform_data <- function() {
 
 # Filters data for systemic ABX and ID Providers
 filter_id_systemic_abx <- function(data) {
-  data %>% filter(SystemicABX == 1, IDProvider == 1) 
+  data %>% filter(SystemicABX == 1, IDProvider == 1, DOT == 1) 
 }
 
 # Creates pivottable for DOT/encounter and Spectrum Score/Encounter variables
