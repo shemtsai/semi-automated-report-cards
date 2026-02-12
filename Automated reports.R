@@ -115,9 +115,6 @@ load_and_transform_data <- function() {
       group_by(ExamplePatientID, DrugName, AdminDate, OrderingPhysicianName) %>%
       mutate(DOT = ifelse(row_number() == 1, 1, 0)) %>%
       ungroup() %>%
-      group_by(ExamplePatientID, OrderingPhysicianName) %>%
-      mutate(UniqueMDEncounter = ifelse(row_number() == 1, 1, 0)) %>%
-      ungroup()
     
     return(data)
 }
@@ -136,10 +133,10 @@ create_spectrum_score_pivot <- function(data) {
       Average_CMI = mean(CMI, na.rm = TRUE),
       Sum_SpectrumScore = sum(SpectrumScore, na.rm = TRUE),
       Sum_DOT = sum(DOT, na.rm = TRUE),
-      Sum_UniqueMDEncounter = sum(UniqueMDEncounter, na.rm = TRUE),
-      DOT_per_Encounter = sum(DOT, na.rm = TRUE) / sum(UniqueMDEncounter, na.rm = TRUE),
-      SpectrumScore_per_Encounter = sum(SpectrumScore, na.rm = TRUE) / sum(UniqueMDEncounter, na.rm = TRUE)) %>%
-    arrange(desc(SpectrumScore_per_Encounter))
+      Encounters = n_distinct(PatientID),
+      DOT_per_Encounter = Sum_DOT / Encounters,
+      SpectrumScore_per_Encounter = Sum_SpectrumScore / Encounters,
+        .groups = "drop")
   return(pivot_data)
 }
 
@@ -632,3 +629,4 @@ doc <- doc %>%
 report_file <- file.path(save_dir, paste0(gsub("\\*", "", provider), "_Stewardship_Report_2024.docx"))
 print(doc, target = report_file)
 }
+
