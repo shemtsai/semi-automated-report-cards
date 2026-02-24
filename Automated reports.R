@@ -127,16 +127,29 @@ filter_id_systemic_abx <- function(data) {
 # Creates pivottable for DOT/encounter and Spectrum Score/Encounter variables
 create_spectrum_score_pivot <- function(data) {
   filtered_data <- filter_id_systemic_abx(data)
-  pivot_data <- filtered_data %>%
+    
+avg_cmi <- filtered_data %>%
+    distinct(OrderingPhysicianName, PatientID, CMI) %>%
+    group_by(OrderingPhysicianName) %>%
+    summarize(Average_CMI = mean(CMI, na.rm = TRUE), .groups = "drop")
+
+  other_variables <- filtered_data %>%
     group_by(OrderingPhysicianName) %>%
     summarize(
-      Average_CMI = mean(CMI, na.rm = TRUE),
       Sum_SpectrumScore = sum(SpectrumScore, na.rm = TRUE),
       Sum_DOT = sum(DOT, na.rm = TRUE),
       Encounters = n_distinct(PatientID),
+      .groups = "drop"
+    ) %>%
+    mutate(
       DOT_per_Encounter = Sum_DOT / Encounters,
-      SpectrumScore_per_Encounter = Sum_SpectrumScore / Encounters,
-        .groups = "drop")
+      SpectrumScore_per_Encounter = Sum_SpectrumScore / Encounters
+    )
+
+  pivot_data <- other_variables %>%
+    left_join(avg_cmi, by = "OrderingPhysicianName") %>%
+    select(OrderingPhysicianName, Average_CMI, Sum_SpectrumScore, Sum_DOT, Encounters, DOT_per_Encounter, SpectrumScore_per_Encounter)
+
   return(pivot_data)
 }
 
@@ -629,4 +642,5 @@ doc <- doc %>%
 report_file <- file.path(save_dir, paste0(gsub("\\*", "", provider), "_Stewardship_Report_2024.docx"))
 print(doc, target = report_file)
 }
+
 
