@@ -17,7 +17,7 @@ This is an interactive HTML dashboard for visualizing Spectrum Scores and antibi
 ## Usage
 
 1. Open `index.html` in a web browser **or access it directly online**:  
-   [View the Dashboard](https://shemtsai.github.io/semi-automated-report-cards/dashboard/)  
+   [(https://shemtsai.github.io/semi-automated-report-cards/dashboard/)](https://shemtsai.github.io/semi-automated-report-cards/dashboard/)  
 2. View or populate the table manually, or integrate client-side scripts for automated data visualization (if added).  
 3. All CSS and JS are contained within the file or referenced via CDN; no server setup is required.
 
