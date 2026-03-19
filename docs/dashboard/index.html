@@ -943,7 +943,7 @@ function mahalDistSq(x,y,mx,my,sxx,syy,sxy){
 }
 
 function bubbleSizes(data, scale) {
-  return data.map(r=>Math.max(8, Math.sqrt(Math.max(0,r.Sum_UniqueMDEncounter))*scale*4));
+  return data.map(r=>Math.max(2, Math.sqrt(Math.max(0,r.Sum_UniqueMDEncounter))*scale*1));
 }
 
 // ═══════════════════════════════════════════════════════════════
