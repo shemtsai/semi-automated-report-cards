@@ -1,6 +1,6 @@
 # Antibiotic Utilization Dashboard
 
-**Work in progress:** This dashboard is still under development. The goal is to make Spectrum Score visualization and antibiotic utilization data more accessible to other Infectious Diseases pharmacists and antimicrobial stewardship programs.
+**Work in progress:** This dashboard is still under development. The goal is to make Spectrum Score visualization and antibiotic utilization data more accessible to other Infectious Diseases pharmacists and antimicrobial stewardship programs that may find running R to be a barrier.
 
 ## Overview
 
