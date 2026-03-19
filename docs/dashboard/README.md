@@ -28,4 +28,4 @@ This is an interactive HTML dashboard for visualizing Spectrum Scores and antibi
 
 ---
 
-**Note:** This dashboard is still a work in progress and will continue to evolve based on feedback and additional functionality.
+**Note:** This dashboard is still a work in progress. Working on more definitions among dataset and sharing of example data table.
