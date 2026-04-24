@@ -112,7 +112,7 @@ load_and_transform_data <- function() {
           grepl("metronidazole", DrugName, ignore.case = TRUE) ~ 2,
           grepl("tinidazole", DrugName, ignore.case = TRUE) ~ 2,
           TRUE ~ 0)) %>% # NOTE: Optional, but can replace SpectrumScore with institution-specific scoring pattern
-      group_by(ExamplePatientID, DrugName, AdminDate, OrderingPhysicianName) %>%
+      group_by(ExamplePatientID, DrugName, AdminDate = as.Date(AdminDate), OrderingPhysicianName) %>%
       mutate(DOT = ifelse(row_number() == 1, 1, 0)) %>%
       ungroup() %>%
     
